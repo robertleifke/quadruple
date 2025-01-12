@@ -57,9 +57,8 @@ Payoff ($)
      +------------------+-----------------> ETH Price at Expiration
          1400           1500
 
-● = Key breakpoints
+● = strike levels
 </div>
-
 </details>
 
 ## Usage
