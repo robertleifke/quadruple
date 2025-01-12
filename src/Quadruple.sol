@@ -3,14 +3,14 @@ pragma solidity ^0.8.24;
 
 import {BaseHook} from "lib/v4-periphery/src/base/hooks/BaseHook.sol";
 
-import {Hooks} from "lib/uniswapv4-core/src/libraries/Hooks.sol";
+import {Hooks} from "lib/v4-core/src/libraries/Hooks.sol";
 import {IPoolManager} from "lib/v4-core/src/interfaces/IPoolManager.sol";
 import {PoolKey} from "lib/v4-core/src/types/PoolKey.sol";
 import {PoolId, PoolIdLibrary} from "lib/v4-core/src/types/PoolId.sol";
 import {BalanceDelta} from "lib/v4-core/src/types/BalanceDelta.sol";
 import {BeforeSwapDelta, BeforeSwapDeltaLibrary} from "lib/v4-core/src/types/BeforeSwapDelta.sol";
 
-contract Counter is BaseHook {
+contract Quadruple is BaseHook {
     using PoolIdLibrary for PoolKey;
 
     // NOTE: ---------------------------------------------------------

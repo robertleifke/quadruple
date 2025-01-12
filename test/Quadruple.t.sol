@@ -2,30 +2,30 @@
 pragma solidity ^0.8.24;
 
 import "forge-std/Test.sol";
-import {IHooks} from "v4-core/src/interfaces/IHooks.sol";
-import {Hooks} from "v4-core/src/libraries/Hooks.sol";
-import {TickMath} from "v4-core/src/libraries/TickMath.sol";
-import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
-import {PoolKey} from "v4-core/src/types/PoolKey.sol";
-import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
-import {PoolId, PoolIdLibrary} from "v4-core/src/types/PoolId.sol";
-import {CurrencyLibrary, Currency} from "v4-core/src/types/Currency.sol";
-import {PoolSwapTest} from "v4-core/src/test/PoolSwapTest.sol";
-import {Counter} from "../src/Counter.sol";
-import {StateLibrary} from "v4-core/src/libraries/StateLibrary.sol";
+import {IHooks} from "lib/v4-core/src/interfaces/IHooks.sol";
+import {Hooks} from "lib/v4-core/src/libraries/Hooks.sol";
+import {TickMath} from "lib/v4-core/src/libraries/TickMath.sol";
+import {IPoolManager} from "lib/v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "lib/v4-core/src/types/PoolKey.sol";
+import {BalanceDelta} from "lib/v4-core/src/types/BalanceDelta.sol";
+import {PoolId, PoolIdLibrary} from "lib/v4-core/src/types/PoolId.sol";
+import {CurrencyLibrary, Currency} from "lib/v4-core/src/types/Currency.sol";
+import {PoolSwapTest} from "lib/v4-core/src/test/PoolSwapTest.sol";
+import {Quadruple} from "../src/Quadruple.sol";
+import {StateLibrary} from "lib/v4-core/src/libraries/StateLibrary.sol";
 
-import {LiquidityAmounts} from "v4-core/test/utils/LiquidityAmounts.sol";
-import {IPositionManager} from "v4-periphery/src/interfaces/IPositionManager.sol";
+import {LiquidityAmounts} from "lib/v4-core/test/utils/LiquidityAmounts.sol";
+import {IPositionManager} from "lib/v4-periphery/src/interfaces/IPositionManager.sol";
 import {EasyPosm} from "./utils/EasyPosm.sol";
 import {Fixtures} from "./utils/Fixtures.sol";
 
-contract CounterTest is Test, Fixtures {
+contract QuadrupleTest is Test, Fixtures {
     using EasyPosm for IPositionManager;
     using PoolIdLibrary for PoolKey;
     using CurrencyLibrary for Currency;
     using StateLibrary for IPoolManager;
 
-    Counter hook;
+    Quadruple hook;
     PoolId poolId;
 
     uint256 tokenId;
@@ -47,8 +47,8 @@ contract CounterTest is Test, Fixtures {
             ) ^ (0x4444 << 144) // Namespace the hook to avoid collisions
         );
         bytes memory constructorArgs = abi.encode(manager); //Add all the necessary constructor arguments from the hook
-        deployCodeTo("Counter.sol:Counter", constructorArgs, flags);
-        hook = Counter(flags);
+        deployCodeTo("Quadruple.sol:Quadruple", constructorArgs, flags);
+        hook = Quadruple(flags);
 
         // Create the pool
         key = PoolKey(currency0, currency1, 3000, 60, IHooks(hook));
@@ -81,7 +81,7 @@ contract CounterTest is Test, Fixtures {
         );
     }
 
-    function testCounterHooks() public {
+    function testQuadrupleHooks() public {
         // positions were created in setup()
         assertEq(hook.beforeAddLiquidityCount(poolId), 1);
         assertEq(hook.beforeRemoveLiquidityCount(poolId), 0);
