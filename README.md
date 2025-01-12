@@ -23,24 +23,7 @@ If ETH goes above $1500, the long call will be exercised and the short call will
 
 ### Chart
 
-<!-- 
-  Optional: If your Markdown renderer allows HTML + CSS, 
-  you can include a <style> block for the custom class:
--->
-<style>
-.chart-container {
-  background-color: #1e1e1e; 
-  color: #dcdcdc; 
-  padding: 16px; 
-  border-radius: 4px;
-  font-family: "Courier New", Courier, monospace;
-  white-space: pre;      /* preserve all spacing exactly */
-  overflow-x: auto; 
-  overflow-y: auto;
-}
-</style>
-
-<div class="chart-container">
+<pre style="background-color:#1e1e1e;color:#dcdcdc;padding:16px;border-radius:4px;font-family:'Courier New', Courier, monospace;white-space:pre;overflow:auto;">
 Payoff ($)
    ^
  +80 |                  ●─────────────  (Flat at +80 beyond $1500)
@@ -58,8 +41,7 @@ Payoff ($)
          1400           1500
 
 ● = strike levels
-</div>
-</details>
+</pre>
 
 ## Usage
 
@@ -75,13 +57,17 @@ Get a gas report:
 $ forge test --gas-report
 ```
 
-| Contract         |           |
-|------------------|-----------|
-| Deployment Cost  | Deployment Size |
-| 900917           | 3996      |
-| Function Name    | min   | avg  | median | max  | # calls |
-|------------------|-------|------|--------|------|---------|
-| checkQuadMaker   | 387   | 6578 | 395    | 20406| 5       |
+| Quadruple.sol         |               |
+|-----------------------|---------------|
+| Deployment Cost       | Deployment Size |
+| 900917                | 3996          |
+| Function Name         | min   | avg  | median | max   | # calls |
+| beforeSwap()          | 387   | 6578 | 395    | 20406 | 5       |
+| afterSwap()           | 387   | 6578 | 395    | 20406 | 5       |
+| beforeAddLiquidity()  | 387   | 6578 | 395    | 20406 | 5       |
+| afterAddLiquidity()   | 387   | 6578 | 395    | 20406 | 5       |
+| beforeRemoveLiquidity() | 387 | 6578 | 395    | 20406 | 5       |
+| afterRemoveLiquidity()  | 387 | 6578 | 395    | 20406 | 5       |
 
 ### Lint
 
