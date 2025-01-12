@@ -1,8 +1,8 @@
-# Quadruple
+# Quadruple 🐂
 
 ![gif](assets/quad_bull.gif)
 
-A bull call spread strategy that quadruples the returns of any ERC-20 token built as a [Uniswap V4](https://github.com/uniswap/v4-core/) hook.
+A bull call spread strategy built as a [Uniswap V4](https://github.com/uniswap/v4-core/) hook that that **quadruples** the returns of any ERC-20 token.
 
 ## Overview
 
@@ -21,11 +21,51 @@ Here’s a simple example of a bull call spread position:
 
 If ETH goes above $1500, the long call will be exercised and the short call will be bought back so you make $80 dollars with only $20 in upfront cost, hence a 4x return. In this scenario gains are capped at $1500 and if ETH goes below $1400 you lose $20.
 
+### Chart
+
+<!-- 
+  Optional: If your Markdown renderer allows HTML + CSS, 
+  you can include a <style> block for the custom class:
+-->
+<style>
+.chart-container {
+  background-color: #1e1e1e; 
+  color: #dcdcdc; 
+  padding: 16px; 
+  border-radius: 4px;
+  font-family: "Courier New", Courier, monospace;
+  white-space: pre;      /* preserve all spacing exactly */
+  overflow-x: auto; 
+  overflow-y: auto;
+}
+</style>
+
+<div class="chart-container">
+Payoff ($)
+   ^
+ +80 |                  ●─────────────  (Flat at +80 beyond $1500)
+     |                 /|             
+ +60 |                / |             
+     |               /  |             
+ +40 |              /   |             
+     |             /    |             
+ +20 |            /     |             
+     |           /      |             
+   0 |          /       |             
+     |         /        |             
+ -20 ●─────────         |             
+     +------------------+-----------------> ETH Price at Expiration
+         1400           1500
+
+● = Key breakpoints
+</div>
+
+</details>
 
 ## Usage
 
 ```bash
-forge build
+$ forge build
 ```
 
 ### Gas 
